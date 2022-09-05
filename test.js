@@ -48,9 +48,15 @@ function switchStatement(val){
 }
 
 console.log(switchStatement(6))
+function doWhile(i){
+    do {
+        console.log('this is' + i)
+        i++
+    }while ( i < 10)
+}
 
-i = 11
-do {
-    console.log('this is' + i)
-    i++
-}while ( i < 10)
+// random number
+function randomWholeNumber(n){
+    return Math.floor(Math.random() * n)
+}
+console.log(randomWholeNumber(10))
