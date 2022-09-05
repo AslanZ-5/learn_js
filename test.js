@@ -20,3 +20,37 @@ function rt(val){
 }
 
 console.log(rt(33))
+
+
+
+function switchStatement(val){
+    answer = ''
+    switch(val) {
+        case 1:
+        case 2:
+        case 3:
+            answer = 'Low'
+            break;
+        case 4:
+        case 5:
+        case 6:
+            answer = 'Mid'
+            break;
+        case 7:
+        case 8:
+        case 9:
+            answer = 'High'
+            break;
+        default:
+            answer = "Undefined"
+    }
+    return answer
+}
+
+console.log(switchStatement(6))
+
+i = 11
+do {
+    console.log('this is' + i)
+    i++
+}while ( i < 10)
