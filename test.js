@@ -60,3 +60,9 @@ function randomWholeNumber(n){
     return Math.floor(Math.random() * n)
 }
 console.log(randomWholeNumber(10))
+
+function randomWholeNumberRange(min,max){
+    return Math.floor(Math.random() * (max - min)) + min
+}
+
+console.log('random number in range ', randomWholeNumberRange(100,150)  )
