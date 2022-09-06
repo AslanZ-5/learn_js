@@ -66,3 +66,10 @@ function randomWholeNumberRange(min,max){
 }
 
 console.log('random number in range ', randomWholeNumberRange(100,150)  )
+
+
+function ternaryOp(a,b){
+    return a > b ? '"a" is bigger than "b"' : '"a" is less than "b"'
+}
+
+console.log(ternaryOp(54,6))
