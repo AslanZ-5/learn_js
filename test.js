@@ -73,3 +73,10 @@ function ternaryOp(a,b){
 }
 
 console.log(ternaryOp(54,6))
+
+
+
+function argS(...args){
+    return args
+}
+console.log(1,2,3,4)
