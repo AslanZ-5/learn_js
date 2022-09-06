@@ -80,3 +80,25 @@ function argS(...args){
     return args
 }
 console.log(1,2,3,4)
+
+
+const  dict = {
+    tommorow : 32,
+    today: 44,
+    yesterday: {
+        max:10000,
+        min:1211211
+    }
+}
+
+const { today:newvar} = dict
+const { yesterday:{min:yestmin}} = dict
+
+
+console.log(newvar)
+console.log(yestmin)
+
+const  [z,x] = [1,2,3,4,5]
+
+const [, , ,r] = [1,2,3,4]
+console.log(z,x,r)
