@@ -112,7 +112,11 @@ function sum(a,b){
 const sum_ar = (a,b) => {
     return a + b
 }
+// arrow function 2
+
+const sum_ar_2 = (a,b) => a+b
 
 
 console.log(` Ordinary function ${sum(4,5)}`)
 console.log(` Arrow function ${sum_ar(4,5)}`)
+console.log(` Arrow2 function ${sum_ar_2(4,5)}`)
