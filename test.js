@@ -103,5 +103,16 @@ const  [z,x] = [1,2,3,4,5]
 const [, , ,r] = [1,2,3,4]
 console.log(z,x,r)
 
+// ordinary function
+function sum(a,b){
+    return a +  b
+}
 
-console.log(parseInt('3223px'))
+// arrow function
+const sum_ar = (a,b) => {
+    return a + b
+}
+
+
+console.log(` Ordinary function ${sum(4,5)}`)
+console.log(` Arrow function ${sum_ar(4,5)}`)
