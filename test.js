@@ -120,3 +120,10 @@ const sum_ar_2 = (a,b) => a+b
 console.log(` Ordinary function ${sum(4,5)}`)
 console.log(` Arrow function ${sum_ar(4,5)}`)
 console.log(` Arrow2 function ${sum_ar_2(4,5)}`)
+
+
+// arrays 
+let a = ['banana', 'orange', 'apple', 'strawberry']
+
+console.log('how indexOf() works', a.indexOf('orange'))
+console.log(a.length)
