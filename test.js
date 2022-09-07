@@ -127,3 +127,19 @@ let a = ['banana', 'orange', 'apple', 'strawberry']
 
 console.log('how indexOf() works', a.indexOf('orange'))
 console.log(a.length)
+
+
+const introducer = (name, shirt) => {
+    const person = {
+        name: name,
+        shirt: shirt,
+        assets: 10000,
+        liabilites: 50000,
+        netWorth: function() {
+            return this.assets - this.liabilites
+        },
+    }
+    return person.netWorth()
+}
+
+console.log('asigned function to keyword', introducer('Dave', 'White') )
