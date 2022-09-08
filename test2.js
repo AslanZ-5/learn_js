@@ -32,3 +32,5 @@ document.getElementById('clearBtn').onclick = () => {
 
     })
 }
+
+console.log('random',Math.floor(Math.random()* 8))
