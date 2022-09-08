@@ -17,7 +17,18 @@
 
 const squares = document.querySelectorAll('.colorsquare')
 console.log(squares[0].value)
-
+timeClicked = {'red':0,'yellow':0,'green':0}
 squares.forEach(square => {
-    square.onclick = () => console.log(square.value)
+    square.onclick = () =>{
+        timeClicked[square.value] += 1
+        square.innerText = timeClicked[square.value]
+    } 
 })
+
+document.getElementById('clearBtn').onclick = () => {
+    squares.forEach(square =>{ 
+        timeClicked[square.value] = 0
+        square.innerText = ''
+
+    })
+}
