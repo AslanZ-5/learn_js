@@ -161,7 +161,7 @@ let ab = [1,2,3,4,5,6,7]
 
 console.log(ab.map(fn => fn ** 2))
 
-
+// filter function
 const actors = [
   {name:'John weik',netWorth:122222},
   {name:'leonardo',netWorth:1022},
@@ -170,3 +170,9 @@ const actors = [
 ]
 
 console.log(actors.filter(ntW => ntW.netWorth > 1000))
+
+// reduce function
+
+let abc = [1,2,3,4,5]
+
+console.log(actors.reduce((a,b) => a + b.netWorth, 0))
