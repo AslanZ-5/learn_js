@@ -33,4 +33,16 @@ document.getElementById('clearBtn').onclick = () => {
     })
 }
 
-console.log('random',Math.floor(Math.random()* 8))
+function firstNonRepeatingLetter(s) {
+    s = s.split('')
+    console.log('sssssssssss',s[0] in s.slice(0,s.length))
+    console.log('s' in s.slice(0,s.length))
+      for ( i in s){
+        if (s[i] in s.slice(i,s.length)){
+          return s[i]
+        }
+      }
+  }
+
+  console.log(firstNonRepeatingLetter('strees'))
+  console.log('ddd',  's' in ['s',2,3,4,5])

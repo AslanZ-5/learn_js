@@ -29,4 +29,32 @@ function score( dice ) {
     }
     return points
   }
-  console.log(score([2, 4, 4, 5, 4]))
+
+
+  function firstNonRepeatingLetter(s) {
+    s1 = s.toLowerCase()
+    dic = {}
+    for (i of s1){
+      if ( i in dic){
+        dic[i] +=1
+      }else{
+        dic[i] = 1
+      }
+    }
+    st = ''
+    for (i in dic){
+      if (dic[i] == 1){
+        st = i
+        break
+      }
+      }
+    if ( st.length > 0){
+       for (i of s){
+      if (i.toLowerCase() == st){
+        console.log(i)
+        st = i
+      }
+    }
+    }
+   return st
+    }
