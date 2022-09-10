@@ -13,8 +13,6 @@
 "max-temp"
 */
 
-// API_KEY for maps api
-let API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
 
 /**
  * Retrieve weather data from openweathermap
@@ -23,19 +21,31 @@ let API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
  * https://api.openweathermap.org/data/2.5/weather?q=detroit&appid=a8e71c9932b20c4ceb0aed183e6a83bb&units=imperial
  */
 getWeatherData = (city) => {
-  const URL = "https://api.openweathermap.org/data/2.5/weather";
-  //HINT: Use template literals to create a url with input and an API key
 
-  //CODE GOES HERE
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '76ec22ba7cmsh5f4d7294c947a75p198d7bjsn8345a4148966',
+            'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+        }
+    };
+    
+    return fetch(`https://yahoo-weather5.p.rapidapi.com/weather?location=${city}&format=json&u=f`, options)
+        .then(response => response.json())
+        .then(data => data)
+        .catch(err => console.error(err));
+
 }
 
 /**
  * Retrieve city input and get the weather data
  * HINT: Use the promise returned from getWeatherData()
  */
-const searchCity = () => {
+const searchCity = async () => {
   const city = document.getElementById('city-input').value;
-  // CODE GOES HERE
+  console.log(city)
+  const data = await getWeatherData(city)
+  showWeatherData(data)
 
 }
 
@@ -44,7 +54,12 @@ const searchCity = () => {
  * HINT: make sure to console log the weatherData to see how the data looks like
  */
 const showWeatherData = (weatherData) => {
-  //CODE GOES HERE
+document.getElementById("city-name").innerText = weatherData.location.city
+document.getElementById("weather-type").innerText = weatherData.current_observation.condition.text
+document.getElementById("temp").innerText = weatherData.current_observation.condition.temperature
+document.getElementById("min-temp").innerText = weatherData.current_observation.atmosphere.humidity
+document.getElementById("max-temp").innerText = weatherData.current_observation.atmosphere.visibility
+document.getElementById("max-temp").innerText = weatherData.current_observation.atmosphere.pressure
   
 }
 
@@ -58,7 +73,3 @@ const options = {
 	}
 };
 
-fetch('https://open-weather13.p.rapidapi.com/city/nazran', options)
-	.then(response => response.json())
-	.then(response => console.log(response.weather[0].main))
-	.catch(err => console.error(err));
