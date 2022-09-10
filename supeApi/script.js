@@ -20,7 +20,7 @@ getNewSupe()
 const getSckills = (char) => {
     console.log('__________', Object.keys(char.powerstats))
     let stat = Object.keys(char.powerstats).map(st => {
-        return `<p> ${st}: ${char.powerstats[st]} `
+        return `<p> ${st.toUpperCase()}: ${char.powerstats[st]} </p>`
     })
     return stat.join('')
 }
