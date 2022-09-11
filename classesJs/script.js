@@ -71,9 +71,5 @@ depositBtn.addEventListener('click', () =>{
     document.getElementById('myBalance').innerText = acc.getBalance()
 })
 
-document.addEventListener('keydown', (e) => {
-    console.log(e.key)
-})
-
 
 
