@@ -48,18 +48,32 @@ acc = new BankAccount(500)
 const withdrawInp = document.getElementById('withdrawInp')
 const withdrawBtn = document.getElementById('withdraw')
 
-const depositInp = document.getElementById('depositInp')
 const depositBtn = document.getElementById('deposit')
 
-withdrawBtn.onclick = () => {
+// withdrawBtn.onclick = () => {
+//     acc.withdraw(Number(withdrawInp.value))
+//     document.getElementById('myBalance').innerText = acc.getBalance()
+// }
+
+// depositBtn.onclick = () => {
+//     acc.deposit(Number(withdrawInp.value))
+//     document.getElementById('myBalance').innerText = acc.getBalance()
+// }
+
+
+withdrawBtn.addEventListener('click', () =>{
     acc.withdraw(Number(withdrawInp.value))
     document.getElementById('myBalance').innerText = acc.getBalance()
-}
+})
 
-depositBtn.onclick = () => {
+depositBtn.addEventListener('click', () =>{
     acc.deposit(Number(withdrawInp.value))
     document.getElementById('myBalance').innerText = acc.getBalance()
-}
+})
+
+document.addEventListener('keydown', (e) => {
+    console.log(e.key)
+})
 
 
 
