@@ -59,17 +59,9 @@ document.getElementById("weather-type").innerText = weatherData.current_observat
 document.getElementById("temp").innerText = weatherData.current_observation.condition.temperature
 document.getElementById("min-temp").innerText = weatherData.current_observation.atmosphere.humidity
 document.getElementById("max-temp").innerText = weatherData.current_observation.atmosphere.visibility
-document.getElementById("max-temp").innerText = weatherData.current_observation.atmosphere.pressure
   
 }
 
 
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '76ec22ba7cmsh5f4d7294c947a75p198d7bjsn8345a4148966',
-		'X-RapidAPI-Host': 'open-weather13.p.rapidapi.com'
-	}
-};
 
