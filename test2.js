@@ -15,26 +15,32 @@
 // yel.onclick = () => console.log('you clicked on yellow')
 // grn.onclick = () => console.log('you clicked on green')
 
-const squares = document.querySelectorAll('.colorsquare')
-console.log(squares[0].value)
-timeClicked = {'red':0,'yellow':0,'green':0}
-squares.forEach(square => {
-    square.onclick = () =>{
-        timeClicked[square.value] += 1
-        square.innerText = timeClicked[square.value]
-    } 
-})
+// const squares = document.querySelectorAll('.colorsquare')
+// console.log(squares[0].value)
+// timeClicked = {'red':0,'yellow':0,'green':0}
+// squares.forEach(square => {
+//     square.onclick = () =>{
+//         timeClicked[square.value] += 1
+//         square.innerText = timeClicked[square.value]
+//     } 
+// })
 
-document.getElementById('clearBtn').onclick = () => {
-    squares.forEach(square =>{ 
-        timeClicked[square.value] = 0
-        square.innerText = ''
+// document.getElementById('clearBtn').onclick = () => {
+//     squares.forEach(square =>{ 
+//         timeClicked[square.value] = 0
+//         square.innerText = ''
 
-    })
-}
+//     })
+// }
 
-fetch('https://dog.ceo/api/breeds/image/random')
-  .then(response => response.json())
-  .then(json => {
-    console.log(json.message)
-  })
+// fetch('https://dog.ceo/api/breeds/image/random')
+//   .then(response => response.json())
+//   .then(json => {
+//     console.log(json.message)
+//   })
+
+
+a = [ 'd', 'l', 'o','b', 'r', 'w' ]
+
+a.splice(a.indexOf('b'),a.indexOf('b')+2)
+console.log(a)

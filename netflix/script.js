@@ -43,36 +43,50 @@ window.onload = () => {
   
   // ** Helper function that makes dynamic API calls **
   function fetchMovies(url, dom_element, path_type) {
-    // Use Fetch with the url passed down 
+    fetch(url)
+    .then(response => {
+      if (response.ok){
+        return response.json()
+      }else{
+        throw new Error('Something went wrong')
+      }})
+      .then(data => showMovies(data,dom_element,path_type))
+      .catch(error => console.log(error))
+
   
     // Within Fetch get the response and call showMovies() with the data , dom_element, and path type
   }
+
+let url = 'https://api.themoviedb.org/3/discover/tv?api_key=19f84e11932abbc79e6d83f82d6d1045&with_networks=213'
+  fetchMovies(url,'original__movies','poster_path')
   
   //  ** Function that displays the movies to the DOM **
-  showMovies = (movies, dom_element, path_type) => {
-    
-    // Create a variable that grabs id or class
+  howMovies = (movies, dom_element, path_type) => {
   
+    // Create a variable that grabs id or class
+    var moviesEl = document.querySelector(dom_element)
   
     // Loop through object
-  
+    for (var movie of movies.results) {
   
       // Within loop create an img element
-  
+      var imageElement = document.createElement('img')
   
       // Set attribute
-  
+      imageElement.setAttribute('data-id', movie.id)
   
       // Set source
-  
+      imageElement.src = `https://image.tmdb.org/t/p/original${movie[path_type]}`
   
       // Add event listener to handleMovieSelection() onClick
-  
-    
+      imageElement.addEventListener('click', e => {
+        handleMovieSelection(e)
+      })
       // Append the imageElement to the dom_element selected
-  
+      moviesEl.appendChild(imageElement)
     }
   }
+  
   
   // ** Function that fetches Netflix Originals **
   function getOriginals() {
@@ -98,9 +112,9 @@ window.onload = () => {
   // ** Function that adds movie data to the DOM
   const setTrailer = trailers => {
     // Set up iframe variable to hold id of the movieTrailer Element
-    const iframe
-    // Set up variable to select .movieNotFound element
-    const movieNotFound
+    // const iframe;
+    // // Set up variable to select .movieNotFound element
+    // const movieNotFound;
   
     // If there is a trailer add the src for it
     if (trailers.length > 0) {
