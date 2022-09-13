@@ -17,4 +17,9 @@ for ( let i of test2){
 
 const ll = document.querySelector('li')
 ll.style.background = 'gray'
-console.log(ll)
+
+
+const ul = document.querySelector('ul')
+const li = document.createElement('li')
+li.innerText = 'append'
+ul.append(li)
