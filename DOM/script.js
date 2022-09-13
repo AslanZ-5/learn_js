@@ -32,8 +32,10 @@ ul.append(li)
 li.setAttribute('id','main-heading')
 
 const test3 = document.getElementById('img1')
-
-
+function backforul(){
+    ul.style.background = 'gray'
+}
+ul.addEventListener('mouseover',backforul)
 li.classList.add('myclasstest')
 // li.classList.remove('myclasstest')
 // 
@@ -55,7 +57,7 @@ li.classList.add('myclasstest')
 
 // SIBLINGS IS THE ELEMENT IN THE SAME LEVEL
 
-console.log(ul.previousSibling)
-console.log(ul.nextSibling)
-console.log(ul.previousElementSibling)
-console.log(ul.nextElementSibling)
+// console.log(ul.previousSibling)
+// console.log(ul.nextSibling)
+// console.log(ul.previousElementSibling)
+// console.log(ul.nextElementSibling)
