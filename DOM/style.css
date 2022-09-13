@@ -1,0 +1,42 @@
+.container2{
+display: flex;
+border: gray .1px solid;
+padding: 10px;
+ 
+}
+.boxes{
+    padding: 25px;
+    border: gray .1px solid;
+    
+}
+.hidden-content{
+    display:none;
+}
+.hidden-content.reveal-btn{
+    display: block;
+}
+
+.this{
+    background-color: gray;
+    width:50%;
+}
+
+.txt {
+    display: block;
+}
+
+#sport{
+    border: gray .2px solid;
+    width: 40%;
+    padding:5px;
+    display: flex;
+    align-items: center;
+    
+}
+.item{
+    border: gray .2px solid;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    
+}

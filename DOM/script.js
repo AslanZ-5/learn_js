@@ -61,3 +61,26 @@ li.classList.add('myclasstest')
 // console.log(ul.nextSibling)
 // console.log(ul.previousElementSibling)
 // console.log(ul.nextElementSibling)
+const revealBtn = document.querySelector('.reveal-btn')
+
+const hiddenContent = document.querySelector('.hidden-content')
+
+function revealContent( ) {
+    if (hiddenContent.classList.contains('reveal-btn')){
+        hiddenContent.classList.remove('reveal-btn')
+    }else{
+        hiddenContent.classList.add('reveal-btn')
+    }
+}
+
+revealBtn.addEventListener('click', revealContent)
+
+
+
+document.querySelector('#sport').addEventListener(
+    'click',
+    function bk(e) {
+        const target = e.target
+        e.target.style.background = 'gray'
+    }
+)
