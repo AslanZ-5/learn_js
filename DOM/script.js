@@ -32,4 +32,8 @@ ul.append(li)
 li.setAttribute('id','main-heading')
 
 const test3 = document.getElementById('img1')
-console.log(test3.getAttribute('src'))
+
+
+li.classList.add('myclasstest')
+// li.classList.remove('myclasstest')
+console.log(li.classList.contains('myclasstest'))
