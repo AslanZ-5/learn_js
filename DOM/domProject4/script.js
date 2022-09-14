@@ -1,6 +1,6 @@
 const startStopBtn = document.querySelector('#startStopBtn')
-const resetBtn = document.querySelector('#resetBtn')
-
+const resetBtn = document.querySelector('#reset')
+console.log(resetBtn)
 
 let seconds = 0;
 let minutes = 0;
@@ -59,4 +59,13 @@ startStopBtn.addEventListener('click', function(){
         document.getElementById('startStopBtn').innerHTML =
         `<i class="fa-solid fa-play" id="play"> </i>`;
     }
+})
+
+
+resetBtn.addEventListener('click', function(){
+    window.clearInterval(timerInterval);
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.getElementById('timer').innerText = "00:00:00"
 })
