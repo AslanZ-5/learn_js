@@ -40,7 +40,36 @@
 //   })
 
 
-a = [ 'd', 'l', 'o','b', 'r', 'w' ]
+// a = [ 'd', 'l', 'o','b', 'r', 'w' ]
 
-a.splice(a.indexOf('b'),a.indexOf('b')+2)
-console.log(a)
+// a.splice(a.indexOf('b'),a.indexOf('b')+2)
+// console.log(a)
+
+
+function removeZeros(array) {
+    // Sort "array" so that all elements with the value of zero are moved to the
+    // end of the array, while the other elements maintain order.
+    // [0, 1, 2, 0, 3] --> [1, 2, 3, 0, 0]
+    // Zero elements also maintain order in which they occurred.
+    // [0, "0", 1, 2, 3] --> [1, 2, 3, 0, "0"]
+    let newarr = []
+    for (i in array){
+      if (!array[i] == 0){
+      newarr[i] = array[i]
+        };
+    }
+    for (i = 0; i < array.length; i++){
+        if (array[i] == 0){
+            newarr[newarr.length] = array[i]
+              };
+    }
+    return newarr
+    
+    // Do not use any temporary arrays or objects. Additionally, you're not able
+    // to use any Array or Object prototype methods such as .shift(), .push(), etc
+    
+    // the correctly sorted array should be returned.
+   
+  }
+
+  removeZeros([0, 1, 2, 0, 3])
