@@ -58,3 +58,23 @@ function score( dice ) {
     }
    return st
     }
+
+
+
+    //The maximum sum value of ranges -- Simple version
+    function maxSum(arr,range){
+      const arrOfSum = range.map(function(item){
+        return arr.slice(item[0],item[1]+1).reduce(
+            (add,a) => add + a, 0)
+    })
+      console.log(arrOfSum)
+      let max = arrOfSum[0];
+      for (item of arrOfSum){
+        if (item > max){
+          max = item
+        }
+      }
+      return max
+      
+      
+    }
