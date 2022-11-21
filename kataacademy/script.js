@@ -39,3 +39,20 @@ function wrapInParagraph(str){
             return `<p>${item}</p>\n`
         }).join('')
     }
+
+
+
+user = {
+    'name': 'Aslan',
+    lastName : 'Zurabov',
+    'user-address': 'dddddd'
+}
+let first = ['a','a']
+// console.log(name || '' || 0)
+const  name = "aslan"
+const  lastName = 'Zurabov'
+const nick = 'muhazir'
+const  username = 'asl'
+
+const client = !!name ? name : !!lastName ? lastName: !!nick? nick : !!username? username :'You shoud have name!!!'
+console.log(client)
