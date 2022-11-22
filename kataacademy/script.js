@@ -109,9 +109,37 @@ const moveToStart = (arr, n) => {
      }
 };
 
-console.log(moveToStart([1,2,3,4,5,6,7,8],3))
+// console.log(moveToStart([1,2,3,4,5,6,7,8],3))
+
+const hasArrays = (arr) => {
+    for ( let i = 0; i < arr.length; i++ ){
+        if (Array.isArray(i)){
+            return true
+        }
+        
+    }
+    return false
+
+};
+
+// console.log(hasArrays([false, true, [1, 2], {}, [], 1, 0, NaN]))
 
 
 
 
-console.log(b.concat(c))
+// RECURCION
+let i = 0
+let arr = [1,3, [3,7,2],43,6,[5,4,3] [433,43,2,[436,43,[4,64,[2]]]]]
+const rec = (arr) =>{
+    for (let i = 0; i < arr.length; i++){
+        if (Array.isArray(arr[i])){
+            rec(arr[i])
+       }else{
+           arr[i] += 'hi'
+       }
+   }
+   return arr
+    }
+    
+
+console.log(rec(arr))
