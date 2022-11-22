@@ -55,4 +55,63 @@ const nick = 'muhazir'
 const  username = 'asl'
 
 const client = !!name ? name : !!lastName ? lastName: !!nick? nick : !!username? username :'You shoud have name!!!'
-console.log(client)
+// console.log(client)
+
+
+//Are brackets balanced
+
+const bracketsBalance = (str) =>{
+    arr = []
+    breck_mp = {
+        '}':'{',
+        ')':'(',
+        ']':'['
+    }
+    console.log(breck_mp)
+    for (let i of str){
+        if (i == '(' || i == '{' || i == '['){
+            arr.push(i)
+        }else{
+            if (breck_mp[i] !== arr.pop()){
+                return false
+            }
+        }
+    }
+    console.log(arr)
+    return !arr.length
+}
+
+// console.log(bracketsBalance('(([]({})))'))
+
+
+/// REPLACE ITEM
+
+function replaceItemsClear(arr, item, replaceItem) {
+    return arr.map((it) => {
+        if (it == item){
+            return 'a'
+        }
+        return it
+    });
+}
+// console.log(replaceItemsClear([1,2,3,4,2], 2, 'a'))
+
+//moveToStart
+// Реализуйте функцию moveToStart, которая принимает массив и число n. Функция должна переставить n элементов массива из конца в начало.
+
+const moveToStart = (arr, n) => {
+    let newArr = arr.slice();
+     if (n >= newArr.length){
+         return newArr
+     }else{
+        return newArr.splice(arr.length - n ,n).concat(newArr)
+    //  return newArr.unshift(newArr.splice(arr.length - n ,n))
+     }
+};
+
+console.log(moveToStart([1,2,3,4,5,6,7,8],3))
+
+
+
+
+console.log(b.concat(c))
