@@ -142,4 +142,112 @@ const rec = (arr) =>{
     }
     
 
-console.log(rec(arr))
+// console.log(rec(arr))
+
+
+// sequenceSum
+
+
+function sequenceSum (begin, end) {
+    //code here
+    console.log(end)
+
+      if (typeof begin !== 'number' || typeof end !== 'number'){
+        return NaN
+    }
+    if (begin === end){
+        return begin
+    }
+    
+    
+     
+   
+}
+// console.log(sequenceSum(1,5))
+
+
+
+
+
+
+
+
+function optionalChaining (obj, chain) {
+    //code here
+          
+         for ( let i of chain){
+            if (obj[i]){
+                obj = obj[i]
+            }
+            else{
+                return obj[i]
+            }
+           
+         }
+         return obj
+  
+  }
+  const obj = {
+    a: {
+      b: {
+        c: {
+          d: {'data':45}
+        }
+      }
+    }
+  }
+// const chain = ["a",'r', "b", "c", "d",]
+// console.log(optionalChaining(obj,chain))
+
+function getStringCount(obj) {
+    if (!Array.isArray(obj)){
+        obj = Object.values(obj)
+        if (!obj.length) { 
+            return 1;
+        }
+  
+     
+    }else{
+        if (!obj.length) { 
+            return 0;
+        }
+    }
+    if (obj[obj.length -1]){
+        return getStringCount(obj.slice(0, -1))
+    }
+    
+    
+    return getStringCount(obj.slice(0, -1)) + 1;
+    // if (typeof count === 'undefined'){
+    //     count =0
+    // }
+    // if (typeof obj === 'object'){
+    //     obj = Object.values(obj)
+    // }
+    // console.log(obj)
+    // if (typeof obj !== 'undefined'){
+        
+    //     if(obj.length){
+    //         if ( obj[0]){
+    //             count++
+    //         }
+    //         obj.shift()
+    //         console.log(count)
+    //         getStringCount(obj)
+       
+    //     }
+
+    // }
+   
+    
+    
+  }
+let tt = {
+    first: '1',
+    second: '2',
+    third: false,
+    fourth: ['anytime', 2, 3, 4 ],
+    fifth:  null,
+  }
+let st = ['1','2',4,4]
+console.log(getStringCount(tt))
