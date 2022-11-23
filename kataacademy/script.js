@@ -198,56 +198,113 @@ function optionalChaining (obj, chain) {
   }
 // const chain = ["a",'r', "b", "c", "d",]
 // console.log(optionalChaining(obj,chain))
-
-function getStringCount(obj) {
-    if (!Array.isArray(obj)){
-        obj = Object.values(obj)
-        if (!obj.length) { 
-            return 1;
-        }
-  
-     
-    }else{
-        if (!obj.length) { 
-            return 0;
-        }
-    }
-    if (obj[obj.length -1]){
-        return getStringCount(obj.slice(0, -1))
-    }
-    
-    
-    return getStringCount(obj.slice(0, -1)) + 1;
-    // if (typeof count === 'undefined'){
-    //     count =0
-    // }
-    // if (typeof obj === 'object'){
-    //     obj = Object.values(obj)
-    // }
-    // console.log(obj)
-    // if (typeof obj !== 'undefined'){
-        
-    //     if(obj.length){
-    //         if ( obj[0]){
-    //             count++
-    //         }
-    //         obj.shift()
-    //         console.log(count)
-    //         getStringCount(obj)
-       
-    //     }
-
-    // }
-   
-    
-    
-  }
-let tt = {
+const vv = ['1', '2', ['3']]
+const ar = [2, 5, 7, [
+    4, 5, 4, 7, [
+       5, 7, 5
+    ], 5,'d'
+ ], 2];
+ const ee = {
     first: '1',
     second: '2',
     third: false,
     fourth: ['anytime', 2, 3, 4 ],
     fifth:  null,
+    sixth:'3'
   }
-let st = ['1','2',4,4]
-console.log(getStringCount(tt))
+//   console.log(Object.prototype.toString.call(vv).indexOf("Object")>-1);
+  function getStringCount(obj) {
+  
+    if(!Array.isArray(obj)){
+        obj = Object.values(obj)
+    }
+    let count = 0;
+    for(let i = 0; i < obj.length; i++){
+       if(Array.isArray(obj[i])){
+          count += getStringCount(obj[i]);
+          continue;
+       }
+       if(Object.prototype.toString.call(obj[i]).indexOf("Object")>-1){
+        count += getStringCount(obj[i]);
+       }
+       
+       if (typeof obj[i] == 'string'){
+        count += 1;
+       }
+       
+    };
+    return count;
+ 
+}
+console.log(getStringCount(ee))
+// function getStringCount(obj) {
+
+
+
+
+///// function partion
+function partition (array, callback) {
+    let newArr = [[],[]]
+    for (let i = 0; i < array.length; i++){
+        if(callback(array[i])){
+            console.log('---true')
+            newArr[0].push(array[i])
+        }else{
+            console.log('--false')
+            newArr[1].push(array[i])
+        }
+    }
+    return newArr
+  }
+  const users = [
+    { 'user': 'barney',  'age': 36, 'active': false },
+    { 'user': 'fred',    'age': 40, 'active': true },
+    { 'user': 'pebbles', 'age': 1,  'active': false }
+  ];
+// const numbers = [1,2,3,4,5,6];
+// console.log(partition(users,(item) => item.active))
+// console.log(partition(numbers,(item) => item > 3))
+// console.log('hh')
+
+const inRange = (a, b) => {
+    return function (item){
+        return item >= a && item<=6 && typeof item === 'number'
+    }
+};
+
+const inArray = arr => {
+    return function (item){
+        return arr.includes(item)
+    }
+};
+
+// let arr2 = [1, 2, 3, 4, 5, 6, 7, true, undefined, NaN];
+// console.log(arr.filter(inArray([1, 2,3, 10, undefined])));
+// console.log(arr2.filter(inRange(3,6))); // [3, 4, 5, 6]
+
+
+const createObjectCalculator = (initialA, initialB) => {
+    
+    const obj = {
+        a:initialA,
+        b:initialB,
+        read: function(a,b){
+            this.a = a
+            this.b = b
+        },
+        sum: function(){
+            return this.a + this.b
+        },
+        mul: function(){
+            return this.a * this.b
+        },
+        
+    }
+   
+    return  obj
+};
+
+// const calc = createObjectCalculator(2,3)
+// console.log(calc.sum())
+// calc.read(5,5)
+// console.log(calc.mul())
