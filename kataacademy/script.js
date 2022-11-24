@@ -236,7 +236,7 @@ const ar = [2, 5, 7, [
     return count;
  
 }
-console.log(getStringCount(ee))
+// console.log(getStringCount(ee))
 // function getStringCount(obj) {
 
 
@@ -308,3 +308,41 @@ const createObjectCalculator = (initialA, initialB) => {
 // console.log(calc.sum())
 // calc.read(5,5)
 // console.log(calc.mul())
+const data = [
+    { firstName: 'Emily', lastName: 'N.', country: 'Ireland', continent: 'Europe', age: 30, language: 'Ruby' },
+    { firstName: 'Nor', lastName: 'E.', country: 'Malaysia', continent: 'Asia', age: 20, language: 'Clojure' }
+    ];
+
+
+    
+const createUsernames = users => {
+    users.forEach((el) => {
+        el.username = el.firstName.toLowerCase() + el.lastName[0] + el.age
+       
+    }
+    )
+    return users
+};
+const processedData = createUsernames(data);
+
+
+
+//Необходимо вернуть массив, содержащий самого старшего человека в списке. Если несколько людей имеют одинаковый наибольший возраст, то нужно вернуть массив, содержащий их всех.
+
+const data2 =[
+    { firstName: 'Gabriel', lastName: 'X.', country: 'Monaco', continent: 'Europe', age: 49, language: 'PHP' },
+    { firstName: 'Odval', lastName: 'F.', country: 'Mongolia', continent: 'Asia', age: 38, language: 'Python' },
+    { firstName: 'Emilija', lastName: 'S.', country: 'Lithuania', continent: 'Europe', age: 19, language: 'Python' },
+    { firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 49, language: 'PHP' },
+]
+
+const getMostSenior = humans => {
+    maxAge = humans.reduce((p,v)=> {
+        return ( p.age > v.age ? p.age : v.age );
+    })
+    return humans.filter((el)=> el.age == maxAge)
+  };
+
+
+const result = getMostSenior(data2);
+console.log(result)
