@@ -187,15 +187,15 @@ function optionalChaining (obj, chain) {
          return obj
   
   }
-  const obj = {
-    a: {
-      b: {
-        c: {
-          d: {'data':45}
-        }
-      }
-    }
-  }
+//   const obj = {
+//     a: {
+//       b: {
+//         c: {
+//           d: {'data':45}
+//         }
+//       }
+//     }
+//   }
 // const chain = ["a",'r', "b", "c", "d",]
 // console.log(optionalChaining(obj,chain))
 const vv = ['1', '2', ['3']]
@@ -344,5 +344,95 @@ const getMostSenior = humans => {
   };
 
 
-const result = getMostSenior(data2);
-console.log(result)
+// const result = getMostSenior(data2);
+// console.log(result)
+
+
+function invert (obj) {
+    return Object.fromEntries(Object.entries(obj).map(item => item.reverse()))
+}
+// console.log(invert({ a: 1, b: 2, c: 3 }))
+
+console.log('2222222222')
+// const obj = { 4: { 1: [ { order: 1, name: 'Test 4' } ] }, 0: { 15: [ { order: 7, name: 'Test 1' }, { order: 3, name: 'Test 3' }, ], 12: [ { order: 1, name: 'Test 2' } ] } };
+// const obj = {name:'aslan', profession:{language:"arabic", prog:{python:{django:"web",flw:"d3"}}}}
+// const sortEntries = (obj) => {
+//   return Array.isArray(obj)
+//     ? obj.slice().sort((a, b) => a.order - b.order).map(({name}) => ({name}))
+//     : Object.entries(obj).sort().flatMap(([, val]) => sortEntries(val));
+// }
+
+// const res = sortEntries(obj);
+  
+// console.log(res);
+
+
+
+
+
+const getpaths = (obj) => {
+    const paths = [];
+    const fn = (obj, path = "") => {
+        Object.entries(obj).forEach(([key, value]) => {
+            if(value === null){
+                value = 'null'
+                if (typeof value === "object") {
+                    return fn(value, `${path}.${key}`);
+                }
+            }
+            
+            paths.push([`${path}.${key}`.slice(1), value]);
+        });
+    };
+    fn(obj);
+    return paths;
+};
+const createPath = (obj, [path, value]) => {
+    path.split(".").reduce(
+        (acc, key, index, array) => acc[key] = acc[key] || array[index + 1] ? {} : value, obj);
+        
+    return obj;
+};
+function deepEqual (obj1, obj2) {
+    if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null){
+        
+        return obj1 === obj2
+    }else{
+        const result = getpaths(obj1)
+        .sort()
+        .reduce((acc, item) => createPath(acc, item), {});
+        const result2 = getpaths(obj2)
+        .sort()
+        .reduce((acc, item) => createPath(acc, item), {});
+    
+        console.log(JSON.stringify(result));
+        console.log(JSON.stringify(result2));
+        return JSON.stringify(result) === JSON.stringify(result2) 
+    }
+}
+// let a = {"name":"Misha","order":{"price":20}};
+// let b = {"name":"Misha","order":{"price":20,"extraField":null}} 
+let obj =  {"name":"Misha","order":{"price":20}};
+let obj2 =  {"order":{"price":20},"name":"Misha"};
+let a = {"name":"Misha","order":{"price":20,"count":1,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withoutTaxes":{"uah":20,"usd":0.74},"withTaxes":{"vat":{"uah":30,"usd":1.11}}}}};
+let b = {"name":"Misha","order":{"count":1,"price":20,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withTaxes":{"vat":{"uah":30,"usd":1.11}},"withoutTaxes":{"usd":0.74,"uah":20}}}} 
+
+
+console.log(deepEqual(obj,obj2))
+
+// const result1 = getpaths(obj1)
+//     .sort(([, a], [, b]) => a - b)
+//     .reduce((acc, item) => createPath(acc, item), {});
+    
+// console.log(JSON.stringify(result1, null, 4));
+// const result = getpaths(obj)
+//     .sort()
+//     .reduce((acc, item) => createPath(acc, item), {});
+// const result2 = getpaths(obj2)
+//     .sort()
+//     .reduce((acc, item) => createPath(acc, item), {});
+    
+// console.log(JSON.stringify(result));
+// console.log(JSON.stringify(result2));
+
+
