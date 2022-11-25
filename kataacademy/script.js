@@ -517,6 +517,69 @@ function daysBetween(startDate, endDate) {
     var millisecondsPerDay = 24 * 60 * 60 * 1000;
     return Math.ceil((treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay);
 }
-console.log(daysBetween(null,1))
+// console.log(daysBetween(null,1))
 
-// console.log(-0 === 0)
+
+function isEmptyWithProtos(obj) {
+    for (let key in obj) {
+        console.log(';')
+        console.log(key)
+     if (obj.hasOwnProperty(key)) {
+       return false;
+     }
+   }
+   return true;
+ }
+console.log(isEmptyWithProtos(objd))
+
+
+/////////// LIBRARY
+function Book(name, author, year) {
+    this.name = name
+    this.author = author
+    this.year = year
+    this.reader = null
+}
+
+Book.prototype.takeBook = function(name){
+    if (this.reader == null){
+            this.reader = name
+            return true
+    }else{
+            return false
+    }
+}
+Book.prototype.isAvailable = function(){
+     return this.reader === null;
+}
+Book.prototype.returnBook = function(){
+    if (this.reader === null){
+            return false
+    }
+    this.reader == null
+    return true
+}
+Book.prototype.changeBookName = function(newBookName){
+    if (!newBookName){
+            return false
+    }
+    this.name = newBookName
+    return true
+}
+Book.prototype.changeAuthorName = function(newAuthorName){
+    if (!newAuthorName){
+            return false
+    }
+    this.author = newAuthorName
+    return true
+}
+Book.prototype.getCurrentReader = function(){
+    if (this.reader === null){
+            return null
+    }else{
+            return this.reader
+    }
+}
+
+
+////////// END OF LIBRARY
