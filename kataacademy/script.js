@@ -353,7 +353,7 @@ function invert (obj) {
 }
 // console.log(invert({ a: 1, b: 2, c: 3 }))
 
-console.log('2222222222')
+
 // const obj = { 4: { 1: [ { order: 1, name: 'Test 4' } ] }, 0: { 15: [ { order: 7, name: 'Test 1' }, { order: 3, name: 'Test 3' }, ], 12: [ { order: 1, name: 'Test 2' } ] } };
 // const obj = {name:'aslan', profession:{language:"arabic", prog:{python:{django:"web",flw:"d3"}}}}
 // const sortEntries = (obj) => {
@@ -418,7 +418,7 @@ let a = {"name":"Misha","order":{"price":20,"count":1,"taxes":{"vat":{"name":"va
 let b = {"name":"Misha","order":{"count":1,"price":20,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withTaxes":{"vat":{"uah":30,"usd":1.11}},"withoutTaxes":{"usd":0.74,"uah":20}}}} 
 
 
-console.log(deepEqual(obj,obj2))
+// console.log(deepEqual(obj,obj2))
 
 // const result1 = getpaths(obj1)
 //     .sort(([, a], [, b]) => a - b)
@@ -435,4 +435,34 @@ console.log(deepEqual(obj,obj2))
 // console.log(JSON.stringify(result));
 // console.log(JSON.stringify(result2));
 
+console.log('hhhhhhhhhh')
 
+const sm = function(...args){
+    return args.map((item)=> Number(item)?Number(item):0).reduce((ac,item)=> ac += item)}
+
+// console.log(sm(1,2,3,5,'ds',6,true,false,))
+
+// const cn = [1,2,4,4]
+// console.log(cn.reduce((ac,i) => ac + i))
+
+
+const merge = (...objects) => {
+    const dic = {}
+    objects.forEach(item =>Object.assign(dic,item))
+    return dic
+};
+console.log(merge(
+    {
+      name: 'John',
+      age: 22,
+    },
+    {
+      surname: 'Klein',
+      age: 20,
+      profession: 'student',
+    },
+    {
+      profession: 'frontend developer',
+      country: 'USA',
+    }
+  ))
