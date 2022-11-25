@@ -556,7 +556,7 @@ Book.prototype.returnBook = function(){
     if (this.reader === null){
             return false
     }
-    this.reader == null
+    this.reader = null
     return true
 }
 Book.prototype.changeBookName = function(newBookName){
