@@ -451,18 +451,72 @@ const merge = (...objects) => {
     objects.forEach(item =>Object.assign(dic,item))
     return dic
 };
-console.log(merge(
-    {
-      name: 'John',
-      age: 22,
-    },
-    {
-      surname: 'Klein',
-      age: 20,
-      profession: 'student',
-    },
-    {
-      profession: 'frontend developer',
-      country: 'USA',
+// console.log(merge(
+//     {
+//       name: 'John',
+//       age: 22,
+//     },
+//     {
+//       surname: 'Klein',
+//       age: 20,
+//       profession: 'student',
+//     },
+//     {
+//       profession: 'frontend developer',
+//       country: 'USA',
+//     }
+//   ))
+
+
+
+
+const getLanguagesStatistic = (feedbacks) => {
+    dic = {}
+    for (let i = 0; i < feedbacks.length; i++){
+        if (feedbacks[i].year == 2019){
+            if (feedbacks[i].language in dic){
+                dic[feedbacks[i].language] +=1
+            }else{
+                dic[feedbacks[i].language] = 1
+            }
+        }
     }
-  ))
+    return dic
+};
+const data1 = [
+    { firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'C', year: 2019 },
+    { firstName: 'Anna', lastName: 'R.', country: 'Liechtenstein', continent: 'Europe', age: 52, language: 'JavaScript', year: 2019 },
+    { firstName: 'Piter', lastName: 'G.', country: 'Sweden', continent: 'Europe', age: 30, language: 'JavaScript', year: 2019 },
+    { firstName: 'Ramon', lastName: 'R.', country: 'Paraguay', continent: 'Americas', age: 29, language: 'Ruby', year: 2014 },
+    { firstName: 'George', lastName: 'B.', country: 'England', continent: 'Europe', age: 81, language: 'C', year: 2016 },
+  ];
+
+const objd = { name: 123 };
+const datad= [1, 1, 1, NaN,2,NaN, 2, 2, 2, true, true, obj, obj, { name: 123 }];
+// let unique = [...new Set(datad)];
+
+// // This array counts duplicates [['a', 3], ['b', 2], ... , ['h', 3]] 
+// let duplicates = unique.map(value => [value, mptrt.filter(str => str == value).length]);
+
+// console.log(duplicates)
+
+
+const rrrr = datad.reduce((acc,it) => acc.has(it)?acc.set(it,acc.get(it)+1):acc.set(it,1),new Map())
+
+function treatAsUTC(date) {
+    var result = new Date(date);
+    result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+    return result;
+}
+
+function daysBetween(startDate, endDate) {
+    if (startDate == null || endDate == 1){
+        // throw new TypeError()
+        console.log('this is error')
+      }
+    var millisecondsPerDay = 24 * 60 * 60 * 1000;
+    return Math.ceil((treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay);
+}
+console.log(daysBetween(null,1))
+
+// console.log(-0 === 0)
