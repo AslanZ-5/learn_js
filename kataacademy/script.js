@@ -651,3 +651,21 @@ Account.transfer = function(frm,to,amount){
         to.addMoney(amount,'transfer')
     
     }
+
+
+    class Calc {
+        constructor(num){
+            this.num = num
+            
+        }
+        add(num){
+            console.log(`${this.num} + ${num} = ${this.num += num}`)
+            
+            
+        }
+        set setname(name){
+            this.name = name
+        }
+
+    }
+    
