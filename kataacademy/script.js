@@ -583,3 +583,71 @@ Book.prototype.getCurrentReader = function(){
 
 
 ////////// END OF LIBRARY
+
+const person = {
+    isHuman: false,
+    printIntroduction: function() {
+      console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+    }
+  };
+
+  const me = Object.create(person);
+  console.log(Date.now())
+
+
+  ///////////////////////////////////////////////////////////////////////////
+
+
+class Person {
+    constructor(firstName, lastName, birthDay){
+        this.firstName = firstName
+        this.lastName = lastName
+        
+        this.birthDay = birthDay
+    }
+    getAge(){
+        let today = new Date()
+        let birthDate = new Date(this.birthDay)
+         var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+    }
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`
+    }
+}
+
+class Account extends Person{
+    constructor(person,balance){
+        super()
+        this.person = person
+        this.balance = balance
+        this.history = [] 
+        
+    }
+    
+    getAmount(){
+        return this.balance
+    }
+    addMoney(amount,desc){
+        this.balance += amount
+        this.history.push({ timestamp: Date.now(), target: 'in', amount: amount, description: desc })
+    }
+    withdrawMoney(amount,desc){
+        this.balance -= amount
+        this.history.push({ timestamp: Date.now(), target: 'out', amount: amount, description: desc })
+    }
+    getAccountHistory(){
+        return this.history
+    }
+  
+}
+Account.transfer = function(frm,to,amount){
+          
+        frm.withdrawMoney(amount,'transfer')
+        to.addMoney(amount,'transfer')
+    
+    }
