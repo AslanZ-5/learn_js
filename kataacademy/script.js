@@ -653,19 +653,129 @@ Account.transfer = function(frm,to,amount){
     }
 
 
+
     class Calc {
-        constructor(num){
-            this.num = num
-            
+        constructor(res=0){
+            this.res = res
         }
         add(num){
-            console.log(`${this.num} + ${num} = ${this.num += num}`)
-            
-            
+                 
+            return new Calc(this.res += num)
+            }
+        sub(num){
+            return new Calc(this.res -= num)
+            }
+        result(){
+            return this.num
         }
-        set setname(name){
-            this.name = name
-        }
+    
+    }
 
+    class EventEmitter {
+        constructor() {
+            this.events = {}
+        }
+    
+        on(eventName, callback) {
+            if (this.events[eventName]){
+                this.events[eventName].push(callback);
+            }else{
+                this.events[eventName] = [callback]
+            }
+        }
+    
+        off(eventName, callback) {
+           if (this.events[eventName]){
+               this.events[eventName] = this.events[eventName].filter(a => a !== callback)
+           }
+        }
+    
+        once(eventName, callback) {
+             const fn = clbck =>{
+                let i = 0;
+                 return function(){
+              if (i==0){
+                   i++
+                   return clbck()
+              }
+         }
+           
+            }
+            if (this.events[eventName]){
+               this.events[eventName] = this.events[eventName].filter(a => a !== callback)
+           }
+            onceFn = fn(callback)
+            this.events[eventName] = onceFn
+    
+        }
+    
+        emit(eventName, ...args) {
+            if (this.events[eventName]){
+                this.events[eventName].forEach(cb =>
+                cb.apply(null,args)
+                )
+            }
+        }
     }
     
+    class BroadcastEventEmitter extends EventEmitter {
+         emit(eventName, ...args) {
+            if (eventName === '*'){
+                for (let i in this.events ){
+                    this.events[i].forEach(cb =>
+                cb.apply(null,args)
+                )
+                }
+                
+            }
+        }
+    }
+
+//     let emitter = new EventEmitter();
+
+//     const multiplyTwo = (num) => num * 2;
+//     const multiplyThree = (num) => num * 3;
+    
+//     const divideTwo = (num) => num / 2;
+//     const divideThree = (num) => num / 3;
+
+// emitter.on('division', divideTwo);
+// emitter.once('division', divideThree);
+
+// // Вызываем событие division - срабатывают обработчики divideTwo и divideThree
+// emitter.emit('division', 6);
+
+
+class ValidationError extends Error{
+    constructor(message){
+        super(message)
+        this.name = 'ValidationError'
+    }
+}
+
+function callJson(jsonst){
+    let user = JSON.parse(jsonst)
+    console.log(brrrrrrrrrrrrrrrrrrr)
+    if (!user.name){
+        throw new ValidationError('this object does not has a "name"!!!!!!')
+    }
+    if (!user.age){
+        throw new ValidationError('this object does not has a "age"!!!!!!')
+
+    }
+}
+
+try {
+    callJson(`{ "name": "John", "age": 30 }`)
+}
+catch(err){
+    if (err instanceof ValidationError){
+        console.log(err.message)
+    }else if(err instanceof SyntaxError){
+        console.log('json syntax error!!!!!',err.message)
+    }else{
+        console.log(err.message)
+    }
+}
+
+console.log('hi im still here')
