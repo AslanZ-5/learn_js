@@ -792,3 +792,32 @@ class Mycl extends Mclass1{
 class Mycl2 extends Mycl{
     
 }
+
+//  CSV GENERATOR
+function escapeCSV(val) {
+    if (typeof val === 'string') {
+      if (val.match(/(,|"|\n)/)) {
+        val = val.replace(/"/g, '""');
+        val = `"${val}"`;
+      }
+      return val;
+    } else {
+      return val;
+    }
+  }
+  
+
+function arrayToCsv(data) {
+           if (typeof data == 'function'){
+    throw new Error("Unexpected value")}
+    return data.map((item) => {
+     
+      return item.map(m => {
+       if (typeof m !== 'string' && typeof m !== 'number'){
+    throw new Error("Unexpected value")}
+
+    return escapeCSV(m)
+
+      }).join(",");
+    }).join('\n');
+}
