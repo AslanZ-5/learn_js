@@ -821,3 +821,93 @@ function arrayToCsv(data) {
       }).join(",");
     }).join('\n');
 }
+const localobj = {
+    'bannerClick':5,
+    'bannerClose': 1,
+}
+localStorage.setItem('counters',JSON.stringify(localobj))
+// const locobj = localStorage.getItem('counters')
+function incCounter(counterName){
+    const locSt = localStorage.getItem('counters')
+    console.log(locSt)
+    try {
+        JSON.parse(locSt)
+    }catch{
+        return
+    }
+    const propVal = JSON.parse(locSt)
+    if (counterName in propVal){
+        propVal[counterName] += 1
+    }else{
+        propVal[counterName] = 1
+    }
+    
+    localStorage.setItem('counters',JSON.stringify(propVal))
+   
+    return propVal[counterName]
+}
+
+function incrementCounter(...counterName){
+    console.log(counterName[0])
+    if (counterName.length > 1 ){
+        return counterName.map(incCounter)[0]
+    }else{
+       return  incCounter(counterName[0])
+    }
+    
+    
+    
+}
+// console.log(incrementCounter('bannerClick','bannerClose'))
+
+
+class AttemptsLimitExceeded extends Error {
+    constructor(){
+      super('Max attempts limit exceed');
+      this.name = 'AttemptsLimitExceeded';
+    }
+  }
+  
+  class NotFoundError extends Error {
+    constructor(){
+      super('Not found');
+      this.name = 'NotFoundError';
+    }
+  }
+  
+  class TemporaryError extends Error {
+    constructor(){
+      super('TemporaryError');
+      this.name = 'TemporaryError';
+    }
+  }
+  
+  function getRepeatableData(getData, key, maxRequestsNumber) {
+    const fn = clbck =>{
+        let i = 0;
+         return function(){
+      if (i==0){
+           i++
+           return clbck(key)
+      }
+ }
+   
+    }
+    let onceFn = fn(getData)
+    return onceFn(key)
+    }
+
+   
+  
+const getData = (key) => 'hello' + key;
+const res = getRepeatableData(getData, '1', 3); 
+const res1 = getRepeatableData(getData, '12', 3); 
+const res2 = getRepeatableData(getData, '13', 3); 
+const res3 = getRepeatableData(getData, '14', 3); 
+console.log(res)
+console.log(res)
+console.log(res)
+console.log(res)
+
+
+
