@@ -779,3 +779,16 @@ catch(err){
 }
 
 console.log('hi im still here')
+
+
+class Mclass1{
+    constructor(){
+        this.name = this.constructor.name
+    }
+}
+class Mycl extends Mclass1{
+
+}
+class Mycl2 extends Mycl{
+    
+}
