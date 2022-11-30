@@ -899,15 +899,69 @@ class AttemptsLimitExceeded extends Error {
 
    
   
-const getData = (key) => 'hello' + key;
-const res = getRepeatableData(getData, '1', 3); 
-const res1 = getRepeatableData(getData, '12', 3); 
-const res2 = getRepeatableData(getData, '13', 3); 
-const res3 = getRepeatableData(getData, '14', 3); 
-console.log(res)
-console.log(res)
-console.log(res)
-console.log(res)
+// const getData = (key) => 'hello' + key;
+// const res = getRepeatableData(getData, '1', 3); 
+// const res1 = getRepeatableData(getData, '12', 3); 
+// const res2 = getRepeatableData(getData, '13', 3); 
+// const res3 = getRepeatableData(getData, '14', 3); 
+// console.log(res)
+// console.log(res)
+// console.log(res)
+// console.log(res)
+
+class ExecutionError extends Error {
+    constructor(data,stack){
+        super()
+        this.name = 'ExecutionError'
+        this.stack = stack
+    }
+    getArgData(){
+        return this.stack
+    }
+}
+
+function applyFn(dataArr, callback) {
+    let succeeded = []
+    let errors = []
+    for (let i =0; i < dataArr.length;i++){
+        try{
+            succeeded.push(callback(dataArr[i]))
+        }catch(e){
+            let error = new ExecutionError(dataArr[i],e.stack)
+            errors.push(error)
+            throw error
+        }
+        
+    }
+    return {'succeeded':succeeded,'errors':errors}
+}
+// console.log(applyFn([1,2,3,4],(item)=> item *2))
+// const { succeeded, errors } = applyFn([1, 2, 3], (arg) => arg + 1);
+// const dataArr = ['{"login":"login","password":"password"}', '{{}'];
+// const callback = JSON.parse;
+// const { succeeded, errors } = applyFn(dataArr, callback);
+
+// console.log(succeeded,errors)
 
 
 
+const  progress = document.getElementById('progress')
+let start = Date.now();
+
+let it = 0;
+
+function count() {
+
+  // сделать часть крупной задачи (*)
+  do {
+    it++;
+    progress.innerHTML = i;
+  } while (i % 1e3 != 0);
+
+  if (i < 1e7) {
+    setTimeout(count);
+  }
+
+}
+
+count();
