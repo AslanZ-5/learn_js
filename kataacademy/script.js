@@ -380,13 +380,15 @@ const getpaths = (obj) => {
                     return fn(value, `${path}.${key}`);
                 }
             }
-            
+            console.log([key,value],'----',path)
             paths.push([`${path}.${key}`.slice(1), value]);
         });
     };
     fn(obj);
     return paths;
 };
+let a = {"name":"Misha","order":{"price":20,"count":1,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withoutTaxes":{"uah":20,"usd":0.74},"withTaxes":{"vat":{"uah":30,"usd":1.11}}}}};
+
 const createPath = (obj, [path, value]) => {
     path.split(".").reduce(
         (acc, key, index, array) => acc[key] = acc[key] || array[index + 1] ? {} : value, obj);
@@ -414,7 +416,7 @@ function deepEqual (obj1, obj2) {
 // let b = {"name":"Misha","order":{"price":20,"extraField":null}} 
 let obj =  {"name":"Misha","order":{"price":20}};
 let obj2 =  {"order":{"price":20},"name":"Misha"};
-let a = {"name":"Misha","order":{"price":20,"count":1,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withoutTaxes":{"uah":20,"usd":0.74},"withTaxes":{"vat":{"uah":30,"usd":1.11}}}}};
+
 let b = {"name":"Misha","order":{"count":1,"price":20,"taxes":{"vat":{"name":"vat","amount":{"uah":10,"usd":0.37}}},"total":{"withTaxes":{"vat":{"uah":30,"usd":1.11}},"withoutTaxes":{"usd":0.74,"uah":20}}}} 
 
 
@@ -942,26 +944,3 @@ function applyFn(dataArr, callback) {
 // const { succeeded, errors } = applyFn(dataArr, callback);
 
 // console.log(succeeded,errors)
-
-
-
-const  progress = document.getElementById('progress')
-let start = Date.now();
-
-let it = 0;
-
-function count() {
-
-  // сделать часть крупной задачи (*)
-  do {
-    it++;
-    progress.innerHTML = i;
-  } while (i % 1e3 != 0);
-
-  if (i < 1e7) {
-    setTimeout(count);
-  }
-
-}
-
-count();
