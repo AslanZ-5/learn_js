@@ -944,3 +944,15 @@ function applyFn(dataArr, callback) {
 // const { succeeded, errors } = applyFn(dataArr, callback);
 
 // console.log(succeeded,errors)
+// console.log('-----Map-----')
+// const map = new Map()
+// let df = {'anem':32,'age':321}
+// map.set(df,'khingzir')
+// console.log(map.get(df))
+// map.set('hi',32)
+// map.set('h546i',3242)
+// map.set('hdgweai',33422)
+// for (let item of map.entries()){
+//     console.log('d',item)
+// }
+
