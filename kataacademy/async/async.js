@@ -30,27 +30,75 @@
 // }).catch(error => {
 //     console.log('promise rejected:', error)
 // })
-let fileSizes = {
-    testFile1: 65,
-    testFile2: 48,
-  }
-  
-  function getFileSize(filename, cb) {
-    setTimeout(() => cb(fileSizes[filename]), Math.random() * 500);
-  }
-  
-  function sumFileSizes(filename1, filename2, cb) {
-    let  sum = 0
-    getFileSize(filename1,data => {
-        sum += data
-        getFileSize(filename2,data => {
-            sum += data
-        })
-       
-    })
-    console.log(sum)
-  }
 
+function increaseSalary() {
+  let minSalary;
+  return new Promise((resolve) => {
+     
+     resolve(api.getEmployees())
+  }).then(data => {
+    minSalary = data.reduce(function (p, v) {
+      return ( p.salary < v.salary ? p : v );
+    },{})
+    return minSalary
+  }).then(data => {
+    return api.setEmployeeSalary(data.id, data.salary + ((20 * data.salary) / 100))
+  }).then(function(data){
+    minSalary = data
+    return true
+  }).then(function(){
+    let message = `Hello, ${minSalary.name}! Congratulations, your new salary is ${minSalary.salary}!`
+    return api.notifyEmployee(minSalary.id,message)
+  }
+  ).catch(err => api.notifyAdmin(err) )
+}
 
-sumFileSizes('testFile1','testFile2')
- 
+  
+  const api = {
+    _employees: [
+      { id: 1, name: 'Alex', salary: 120000 },
+      { id: 2, name: 'Fred', salary: 110000 },
+      { id: 3, name: 'Bob', salary: 80000 },
+    ],
+  
+    getEmployees() {
+      return new Promise((resolve) => {
+        resolve(this._employees.slice());
+      });
+    },
+  
+    setEmployeeSalary(employeeId, newSalary) {
+      return new Promise((resolve) => {
+        this._employees = this._employees.map((employee) =>
+          employee.id !== employeeId
+            ? employee
+            : {
+              ...employee,
+              salary: newSalary,
+            }
+        );
+        resolve(this._employees.find(({ id }) => id === employeeId));
+      });
+    },
+  
+    notifyEmployee(employeeId, text) {
+      return new Promise((resolve) => {
+        resolve(true);
+      });
+    },
+  
+    notifyAdmin(error) {
+      return new Promise((resolve) => {
+        resolve(true);
+      });
+    },
+  
+    setEmployees(newEmployees) {
+      return new Promise((resolve) => {
+        this._employees = newEmployees;
+        resolve();
+      });
+    },
+  };
+  
+  increaseSalary()
