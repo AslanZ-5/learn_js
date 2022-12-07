@@ -30,28 +30,51 @@
 // }).catch(error => {
 //     console.log('promise rejected:', error)
 // })
-
-function increaseSalary() {
-  let minSalary;
-  return new Promise((resolve) => {
+async function increaseSalary() {
+  try{
+   const employees = await api.getEmployees()
+   const average = employees.reduce((ac,it) =>ac += it.salary,0) / employees.length
+   let count = 0
+   let budGet = 0
+   for (const empl of employees){
+     let salary = empl.salary
+      const encSal = Math.floor(average>salary?1.2 * salary: 1.1 * salary)
+      budGet += encSal - salary
+ 
+     const setSal = await api.setEmployeeSalary(empl.id,encSal)
+     console.log(setSal)
+     let message = `Hello, ${setSal.name}! Congratulations, your new salary is ${setSal.salary}!`
+     await api.notifyEmployee(setSal.id,message)
+     count++
      
-     resolve(api.getEmployees())
-  }).then(data => {
-    minSalary = data.reduce(function (p, v) {
-      return ( p.salary < v.salary ? p : v );
-    },{})
-    return minSalary
-  }).then(data => {
-    return api.setEmployeeSalary(data.id, data.salary + ((20 * data.salary) / 100))
-  }).then(function(data){
-    minSalary = data
-    return true
-  }).then(function(){
-    let message = `Hello, ${minSalary.name}! Congratulations, your new salary is ${minSalary.salary}!`
-    return api.notifyEmployee(minSalary.id,message)
+   }
+   console.log('bbb',budGet)
+   return count
+  }catch(e){
+     api.notifyAdmin(e)
   }
-  ).catch(err => api.notifyAdmin(err) )
-}
+ }
+// function increaseSalary() {
+//   let minSalary;
+//   return new Promise((resolve) => {
+     
+//      resolve(api.getEmployees())
+//   }).then(data => {
+//     minSalary = data.reduce(function (p, v) {
+//       return ( p.salary < v.salary ? p : v );
+//     },{})
+//     return minSalary
+//   }).then(data => {
+//     return api.setEmployeeSalary(data.id, data.salary + ((20 * data.salary) / 100))
+//   }).then(function(data){
+//     minSalary = data
+//     return true
+//   }).then(function(){
+//     let message = `Hello, ${minSalary.name}! Congratulations, your new salary is ${minSalary.salary}!`
+//     return api.notifyEmployee(minSalary.id,message)
+//   }
+//   ).catch(err => api.notifyAdmin(err) )
+// }
 
   
   const api = {
@@ -102,3 +125,30 @@ function increaseSalary() {
   };
   
   increaseSalary()
+
+
+  const resourse = 'https://jsonplaceholder.typicode.com/todos/'
+  
+function delay(time){
+  return new Promise(resolve => {
+    setTimeout(resolve,time)
+  })
+}
+
+// function fetchTodos(){
+//   return delay(3000).then(() => {
+//     return fetch(resourse)
+//   }
+//   ).then(data => data.json())
+// }
+
+// fetchTodos().then(data => console.log(data))
+
+async function asFetchTodos(){
+  await delay(2000)
+  const response = await fetch(resourse)
+  const data = await response.json()
+  console.log('async**',data)
+
+}
+// asFetchTodos()
