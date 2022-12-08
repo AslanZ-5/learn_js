@@ -48,7 +48,7 @@ async function increaseSalary() {
      count++
      
    }
-   console.log('bbb',budGet)
+   
    return count
   }catch(e){
      api.notifyAdmin(e)
@@ -124,7 +124,7 @@ async function increaseSalary() {
     },
   };
   
-  increaseSalary()
+  // increaseSalary()
 
 
   const resourse = 'https://jsonplaceholder.typicode.com/todos/'
@@ -152,3 +152,20 @@ async function asFetchTodos(){
 
 }
 // asFetchTodos()
+
+const asy = document.querySelector('.async')
+let i = 0;
+function count(){
+  do {
+    i++;
+    asy.innerHTML = i;
+  } while (i % 1e3 != 0);
+
+  if (i < 1e5) {
+    queueMicrotask(count);
+  }
+
+}
+
+
+count()
