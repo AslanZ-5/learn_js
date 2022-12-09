@@ -144,28 +144,22 @@ function delay(time){
 
 // fetchTodos().then(data => console.log(data))
 
-async function asFetchTodos(){
-  await delay(2000)
-  const response = await fetch(resourse)
-  const data = await response.json()
-  console.log('async**',data)
+// async function asFetchTodos(){
+//   await delay(2000)
+//   const response = await fetch(resourse)
+//   const data = await response.json()
+//   console.log('async**',data)
 
-}
+// }
 // asFetchTodos()
 
-const asy = document.querySelector('.async')
-let i = 0;
-function count(){
-  do {
-    i++;
-    asy.innerHTML = i;
-  } while (i % 1e3 != 0);
-
-  if (i < 1e5) {
-    queueMicrotask(count);
-  }
-
+function testAsync(callback){
+ 
+  setTimeout(()=>{
+    callback(45)
+  })
+  
 }
+testAsync(data => setTimeout(() => console.log(data + 12)))
 
 
-count()
