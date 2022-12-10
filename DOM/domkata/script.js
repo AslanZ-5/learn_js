@@ -5,23 +5,28 @@ const hh = document.querySelector('.HH')
 const setClass = document.querySelector('div')
 let input = document.querySelector('input');
 let link =  hh.lastElementChild
-console.log(link.href)
-// атрибут => свойство
-input.setAttribute('id', 'id');
-console.log(input.id); // id (обновлено)
 
-// свойство => атрибут
-input.id = 'newId';
-console.log(input.getAttribute('id')); // newId (обновлено)
+let textNode = document.createTextNode('А вот и я');
+let hhPar = hh.parentElement
+console.log(hhPar)
+hhPar.insertAdjacentHTML("beforeend",'<h1>hi there</h1>')
+// console.log(link.href)
+// // атрибут => свойство
+// input.setAttribute('id', 'id');
+// console.log(input.id); // id (обновлено)
+
+// // свойство => атрибут
+// input.id = 'newId';
+// console.log(input.getAttribute('id')); // newId (обновлено)
 
 
-  // атрибут => значение
-  input.setAttribute('value', 'text');
-  console.log(input.value); // text
+//   // атрибут => значение
+//   input.setAttribute('value', 'text');
+//   console.log(input.value); // text
 
-  // свойство => атрибут
-  input.value = 'newValue';
-  console.log(input.getAttribute('value')); // text (не обновилось!)
+//   // свойство => атрибут
+//   input.value = 'newValue';
+//   console.log(input.getAttribute('value')); // text (не обновилось!)
 // setClass.setAttribute('class','setted')
 // setClass.setAttribute('name','setted')
 // console.log(setClass.hasAttribute('name'))
