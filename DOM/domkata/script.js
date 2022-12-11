@@ -5,11 +5,15 @@ const hh = document.querySelector('.HH')
 const setClass = document.querySelector('div')
 let input = document.querySelector('input');
 let link =  hh.lastElementChild
-
-let textNode = document.createTextNode('А вот и я');
 let hhPar = hh.parentElement
-console.log(hhPar)
-hhPar.insertAdjacentHTML("beforeend",'<h1>hi there</h1>')
+
+table.addEventListener('click', e => {
+    console.log(e.eventPhase)
+})
+// let textNode = document.createTextNode('А вот и я');
+
+// console.log(hhPar)
+// hhPar.insertAdjacentHTML("beforeend",'<h1>hi there</h1>')
 // console.log(link.href)
 // // атрибут => свойство
 // input.setAttribute('id', 'id');
