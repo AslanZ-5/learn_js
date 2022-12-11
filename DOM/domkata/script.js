@@ -1,44 +1,65 @@
-const dd = document.querySelector('div')
-const head = document.querySelector('h1')
-const allchild = document.body.childNodes
-const hh = document.querySelector('.HH')
-const setClass = document.querySelector('div')
-let input = document.querySelector('input');
-let link =  hh.lastElementChild
-let hhPar = hh.parentElement
+const container = document.querySelector('.container')
+const btns = document.querySelector('.make-request')
+function getReq(cl){
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET','https://jsonplaceholder.typicode.com/posts/')
+    xhr.addEventListener('load',function(e){
+        cl(xhr.responseText)
+    })
+    xhr.send()
+}
+function postReq(body,cl){
+    const xhr = new XMLHttpRequest()
+    
+    xhr.open('POST','https://jsonplaceholder.typicode.com/posts')
+    xhr.addEventListener('load',function(e){
+        cl(xhr.responseText)
+    })
+    xhr.setRequestHeader('Content-type', 'application/json')
+    xhr.send(body)
 
-table.addEventListener('click', e => {
-    console.log(e.eventPhase)
+}
+const postDt = {
+    title: 'my quote',
+    body: 'this is life, we have nothing to do with it',
+    userId: 1,
+  }
+
+function createCard(data){
+    let divEl = document.createElement('div')
+    divEl.classList.add('card-body')
+    let card = document.createElement('div')
+    card.classList.add('card')
+    let tit = document.createElement('h1')
+    tit.classList.add('title')
+    tit.textContent = data.title
+    let body = document.createElement('p')
+    body.classList.add('body')
+    body.textContent = data.body
+    divEl.append(tit)
+    divEl.append(body)
+    card.append(divEl)
+    return card
+}
+
+
+
+btns.addEventListener('click', e => {
+    if (e.target.classList[0] == 'get-btn'){
+        getReq(data => {
+            const dt = JSON.parse(data)
+            const frag = document.createDocumentFragment()
+            dt.forEach(data => {
+                 frag.append(createCard(data))
+            })
+            container.append(frag)
+         
+         })
+    }else if(e.target.classList[0] == 'post-btn'){
+        postReq(JSON.stringify(postDt),data => { 
+            let el = createCard(JSON.parse(data))
+            container.insertAdjacentElement('afterbegin',el)
+        })
+    }
 })
-// let textNode = document.createTextNode('А вот и я');
 
-// console.log(hhPar)
-// hhPar.insertAdjacentHTML("beforeend",'<h1>hi there</h1>')
-// console.log(link.href)
-// // атрибут => свойство
-// input.setAttribute('id', 'id');
-// console.log(input.id); // id (обновлено)
-
-// // свойство => атрибут
-// input.id = 'newId';
-// console.log(input.getAttribute('id')); // newId (обновлено)
-
-
-//   // атрибут => значение
-//   input.setAttribute('value', 'text');
-//   console.log(input.value); // text
-
-//   // свойство => атрибут
-//   input.value = 'newValue';
-//   console.log(input.getAttribute('value')); // text (не обновилось!)
-// setClass.setAttribute('class','setted')
-// setClass.setAttribute('name','setted')
-// console.log(setClass.hasAttribute('name'))
-// setClass.removeAttribute('name')
-// console.dir(setClass)
-// Element.prototype.sayHi = function(){
-//     console.log('hi')
-// }
-// console.log(document.body.sayHi())
-// console.dir(document.body)
-// console.dir(setClass)
