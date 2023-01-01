@@ -1,26 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 style="font-size: 100px;" id="title">Hellow There</h1>
-
-    <div id="dogimage">
-        <img src="" alt="">
-    </div>
-    <div id="container">
-        <button class="colorsquare" id="red" style="background-color:red; width: 100px; height:100px" value="red"></button>
-        <button class="colorsquare" id="yellow" style="background-color:yellow; width: 100px; height:100px" value="yellow"></button>
-        
-        <button class="colorsquare"  id="green" style="background-color:green; width: 100px; height:100px" value="green"></button>
-        <button id="clearBtn">Clear the Game</button>
-    </div>
-
-
-    <script src="test2.js"></script>
-</body>
+<html lang="en" data-framework="es6">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vanilla ES6 • TodoMVC</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <section class="todoapp">
+      <header class="header">
+        <h1>todos</h1>
+        <form class="new-todo-form">
+          <input class="new-todo" placeholder="Task" autofocus />
+          <input class="new-todo-form__timer" placeholder="Min" autofocus />
+          <input class="new-todo-form__timer" placeholder="Sec" autofocus />
+        </form>
+      </header>
+      <section class="main">
+        <ul class="todo-list">
+          <li class="completed">
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>
+                <span class="title">fw</span>
+                <span class="description">
+                  <button class="icon icon-play"></button>
+                  <button class="icon icon-pause"></button>
+                  12:25
+                </span>
+                <span class="description">created 17 seconds ago</span>
+              </label>
+              <button class="icon icon-edit"></button>
+              <button class="icon icon-destroy"></button>
+            </div>
+          </li>
+          <li class="editing">
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>
+                <span class="title">fw</span>
+                <span class="description">
+                  <button class="icon icon-play"></button>
+                  <button class="icon icon-pause"></button>
+                  12:25
+                </span>
+                <span class="description">created 5 minutes ago</span>
+              </label>
+              <button class="icon icon-edit"></button>
+              <button class="icon icon-destroy"></button>
+            </div>
+            <input type="text" class="edit" />
+          </li>
+          <li>
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>
+                <span class="title">fw</span>
+                <span class="description">
+                  <button class="icon icon-play"></button>
+                  <button class="icon icon-pause"></button>
+                  12:25
+                </span>
+                <span class="description">created 5 minutes ago</span>
+              </label>
+              <button class="icon icon-edit"></button>
+              <button class="icon icon-destroy"></button>
+            </div>
+          </li>
+        </ul>
+        <footer class="footer">
+          <span class="todo-count">0 items left</span>
+          <ul class="filters">
+            <li>
+              <button class="selected">All</button>
+            </li>
+            <li>
+              <button>Active</button>
+            </li>
+            <li>
+              <button>Completed</button>
+            </li>
+          </ul>
+          <button class="clear-completed">Clear completed</button>
+        </footer>
+      </section>
+    </section>
+  </body>
 </html>
